@@ -54,7 +54,17 @@ class HomeScreen extends StatelessWidget {
               ),
             )
           : Container(
-              color: Colors.orange,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    weather!.getThemeColor(),
+                    weather!.getThemeColor()[300]!,
+                    weather!.getThemeColor()[100]!,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -70,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                     height: 8.0,
                   ),
                   Text(
-                    weather!.date,
+                    'Updated at : ${weather!.date.hour.toString()}:${weather!.date.minute.toString()}',
                     style: const TextStyle(
                       fontSize: 24,
                     ),

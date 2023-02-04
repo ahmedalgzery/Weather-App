@@ -20,8 +20,10 @@ class MyApp extends StatelessWidget {
     return 
        MaterialApp(
         title: 'Weather App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.orange,
+          
+         primarySwatch: Provider.of<WeatherProvider>(context).weatherModel == null ?  Colors.blue : Provider.of<WeatherProvider>(context).weatherModel!.getThemeColor()  ,
         ),
         home: HomeScreen(),
       

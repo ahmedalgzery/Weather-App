@@ -21,21 +21,31 @@ class SearchScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              onChanged: (data){
+                 cityName = data;
+              },
               onSubmitted: (data) async {
                 cityName = data;
                 WeatherService service = WeatherService();
-                WeatherModel weatherModel =
+                WeatherModel? weatherModel =
                     await service.getWeather(cityName: cityName!);
                 Provider.of<WeatherProvider>(context, listen: false).cityName=cityName;
                      Provider.of<WeatherProvider>(context, listen: false) .weatherModel = weatherModel;
                 Navigator.pop(context);
               },
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text('Search'),
+              decoration:  InputDecoration(
+                border: const OutlineInputBorder(),
+                label: const Text('Search'),
                 hintText: 'Enter City Name',
-                suffixIcon: Icon(Icons.search_rounded),
-                contentPadding: EdgeInsets.symmetric(
+                suffixIcon: IconButton(icon:const Icon(Icons.search_rounded) ,onPressed: ()async{
+                  WeatherService service = WeatherService();
+                WeatherModel? weatherModel =
+                    await service.getWeather(cityName: cityName!);
+                Provider.of<WeatherProvider>(context, listen: false).cityName=cityName;
+                     Provider.of<WeatherProvider>(context, listen: false) .weatherModel = weatherModel;
+                Navigator.pop(context);
+                },),
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 32.0,
                   horizontal: 24.0,
                 ),
