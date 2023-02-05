@@ -88,12 +88,19 @@ class HomeScreen extends StatelessWidget {
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(weather!.weatherIcon),
+                      Image.network(
+                        weather!.weatherIcon,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset('images/cloudy.png');
+                        },
+                      ),
                       Text(
                         '${weather!.avgTemp.toInt()}',
                         style: const TextStyle(
-                          fontSize: 32,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
