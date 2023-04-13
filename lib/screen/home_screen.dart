@@ -31,10 +31,10 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: weather == null
-          ? Center(
+          ? const Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Text(
                     'there is no weather 😔 start',
                     style: TextStyle(
